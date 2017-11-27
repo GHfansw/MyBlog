@@ -1,6 +1,6 @@
-package com.laughingcrying.dao.Impl;
+package com.laughingcrying.mongoDao.Impl;
 
-import com.laughingcrying.dao.ArticalDao;
+import com.laughingcrying.mongoDao.ArticalDao;
 import com.laughingcrying.model.Artical;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;

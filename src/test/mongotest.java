@@ -1,5 +1,5 @@
 
-import com.laughingcrying.dao.ArticalDao;
+import com.laughingcrying.mongoDao.ArticalDao;
 import com.laughingcrying.model.Artical;
 import com.laughingcrying.model.Comment;
 import com.laughingcrying.mongoDao.UserMongoDao;
@@ -37,12 +37,12 @@ public class mongotest {
         tags.add("food");
         tags.add("tech");
         List<Comment> comments = new ArrayList<>();
-        ConcurrentHashMap hashMap = new ConcurrentHashMap();
-        hashMap.put("user","test user");
-        hashMap.put("message","i LIKE the test");
-        hashMap.put("date",new Date().toString());
-        hashMap.put("like","5");
-        comments.add(new Comment(hashMap));
+//        ConcurrentHashMap hashMap = new ConcurrentHashMap();
+//        hashMap.put("user","test user");
+//        hashMap.put("message","i LIKE the test");
+//        hashMap.put("date",new Date().toString());
+//        hashMap.put("like","5");
+        comments.add(new Comment("test user","i LIKE the test",new Date().toString(),5));
         Artical artical = new Artical("test title","test desc","test by me",tags,4,comments);
         articalDao.addArtical(artical);
         List l = articalDao.findAll();

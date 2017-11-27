@@ -1,6 +1,6 @@
 package com.laughingcrying.service.Impl;
 
-import com.laughingcrying.dao.ArticalDao;
+import com.laughingcrying.mongoDao.ArticalDao;
 import com.laughingcrying.model.BaseInfo;
 import com.laughingcrying.service.ArticalServ;
 import org.springframework.beans.factory.annotation.Autowired;

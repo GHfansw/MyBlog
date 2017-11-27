@@ -1,4 +1,4 @@
-package com.laughingcrying.dao;
+package com.laughingcrying.mongoDao;
 
 import com.laughingcrying.model.Artical;
 import org.springframework.stereotype.Repository;
