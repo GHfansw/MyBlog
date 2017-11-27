@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    <!-- 自动扫描 -->
+    <!--<context:component-scan base-package="com.laughingcrying.service" />-->
+    <!--<context:component-scan base-package="com.laughingcrying.dao" />-->
+    <import resource="spring-context.xml"/>
+    <!--<context:component-scan base-package="com.laughingcrying.redis" />-->
+    <!-- 引入配置文件 -->
+    <!-- 自动引入属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="0"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="20"></property>
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="20"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="1"></property>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="60000"></property>
+        <!-- 避免mybatis-mysql 8 小时连接问题-->
+        <property name="testOnBorrow" value="true"/>
+        <property name="validationQuery" value="select 1"/>
+    </bean>
+
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:mappers/*.xml"></property>
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.laughingcrying.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- jedis相关配置 　START-->
+
+
+    <!--&lt;!&ndash; jedis客户端连接池配置 &ndash;&gt;-->
+    <!--<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">-->
+        <!--<property name="maxIdle" value="${redis.pool.maxIdle}" />-->
+        <!--<property name="maxTotal" value="${redis.pool.maxTotal}" />-->
+        <!--<property name="timeBetweenEvictionRunsMillis" value="${redis.pool.timeBetweenEvictionRunsMillis}" />-->
+        <!--<property name="minEvictableIdleTimeMillis" value="${redis.pool.minEvictableIdleTimeMillis}" />-->
+        <!--<property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />-->
+    <!--</bean>-->
+
+    <!--<bean id="jedisShardInfo" class="redis.clients.jedis.JedisShardInfo">-->
+        <!--<constructor-arg index="0" value="${redis.host}"/>-->
+        <!--<constructor-arg index="1" value="${redis.port}" type="int" />-->
+        <!--<property name="password" value="${redis.pass}"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; 	<bean id="jedisShardInfo2" class="redis.clients.jedis.JedisShardInfo">-->
+            <!--<constructor-arg index="0" value="${redis2.host}"/>-->
+            <!--<constructor-arg index="1" value="${redis2.port}" type="int"/>-->
+            <!--<property name="password" value="${redis2.pass}"/>-->
+        <!--</bean> &ndash;&gt;-->
+
+    <!--<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">-->
+        <!--<constructor-arg index="0" ref="jedisPoolConfig" />-->
+        <!--<constructor-arg index="1">-->
+            <!--<list>-->
+                <!--<ref bean="jedisShardInfo"/>-->
+                <!--&lt;!&ndash; <ref bean="jedisShardInfo2"/> &ndash;&gt;-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+</beans>
