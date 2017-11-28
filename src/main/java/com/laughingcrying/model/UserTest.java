@@ -6,14 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 
 @Document(collection = "test")
-public class User implements Serializable{
+public class UserTest implements Serializable{
     @Id
     private String id;
 
     private String username;
     private String password;
 
-    public User(String username, String password) {
+    public UserTest(String username, String password) {
         this.username = username;
         this.password = password;
     }

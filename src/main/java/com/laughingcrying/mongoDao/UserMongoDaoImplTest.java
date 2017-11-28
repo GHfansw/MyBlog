@@ -1,10 +1,7 @@
 package com.laughingcrying.mongoDao;
 
 
-import com.laughingcrying.model.User;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
+import com.laughingcrying.model.UserTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -17,17 +14,17 @@ import java.util.List;
 
 
 @Repository
-public class UserMongoDaoImpl implements UserMongoDao {
+public class UserMongoDaoImplTest implements UserMongoDaoTest {
 
     //MongoTemplate是数据库和代码之间的接口，对数据库的操作都在它里面
     @Resource
     private MongoTemplate mongoTemplate;
 
-    @Override public List<User> findAll() {
-        return mongoTemplate.findAll(User.class,"user");
+    @Override public List<UserTest> findAll() {
+        return mongoTemplate.findAll(UserTest.class,"user");
     }
 
-    @Override public void insertUser(User User) {
+    @Override public void insertUser(UserTest User) {
         mongoTemplate.insert(User,"user");
     }
 
@@ -39,8 +36,8 @@ public class UserMongoDaoImpl implements UserMongoDao {
         mongoTemplate.updateMulti(Query.query(Criteria.where("age").gt(3).lte(5)), Update.update("age",3),"user");
     }
 
-    @Override public List<User> findForRequery(String userName) {
-        return mongoTemplate.find(Query.query(Criteria.where("username").is(userName)),User.class);
+    @Override public List<UserTest> findForRequery(String userName) {
+        return mongoTemplate.find(Query.query(Criteria.where("username").is(userName)),UserTest.class);
     }
 
 }

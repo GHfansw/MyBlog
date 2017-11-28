@@ -1,5 +1,6 @@
 package com.laughingcrying.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Artical {
@@ -10,18 +11,23 @@ public class Artical {
     private List<String> tags;
     private int likes;
     private List<Comment> comments;
+    private Date publishDate;
+    private int views;
 
     public Artical() {
     }
 
-    public Artical(String title, String description, String by, List<String> tags, int likes, List<Comment> comments) {
+    public Artical(String title, String description, String by, List<String> tags, int likes, List<Comment> comments, Date publishDate, int views) {
         this.title = title;
         this.description = description;
         this.by = by;
         this.tags = tags;
         this.likes = likes;
         this.comments = comments;
+        this.publishDate = publishDate;
+        this.views = views;
     }
+
 
     public String getId() {
         return id;
@@ -81,5 +87,21 @@ public class Artical {
 
     public String toString(){
         return title+description;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.laughingcrying.dao.AccountDao" >
+    <insert id="addAccount" useGeneratedKeys="true" keyProperty="id" parameterType="com.laughingcrying.model.Account" >
+        INSERT INTO account (id,accountid,username,password,isadmin)
+        VALUES ( #{id},#{accountId},#{username},#{password},#{isAdmin})
+    </insert>
+
+    <delete id="deleteAccount" parameterType="Integer">
+        delete from account where accountid=#{accountId}
+    </delete>
+
+    <update id="updateAccount" parameterType="com.laughingcrying.model.Account">
+        UPDATE account
+        set account.username = #{username},account.password=#{password}
+        WHERE account.accountid = #{accountid}
+    </update>
+
+    <select id="getAccounts" resultType="com.laughingcrying.model.Account">
+        SELECT * FROM account
+    </select>
+
+    <select id="getAccountByAccountId" parameterType="String" resultType="com.laughingcrying.model.Account">
+        SELECT * FROM account WHERE accountid=#{accountId}
+    </select>
+</mapper>

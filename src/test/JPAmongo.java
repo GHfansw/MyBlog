@@ -1,5 +1,5 @@
-import com.laughingcrying.dao.UserDao;
-import com.laughingcrying.model.User;
+import com.laughingcrying.dao.UserDaoTest;
+import com.laughingcrying.model.UserTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //如果使用MongoRepositories则必须添加上面一行注释，并在mongodb-context中加入扫描的repositories的location
 public class JPAmongo {
     @Autowired
-    private UserDao userDao;
+    private UserDaoTest userDao;
 
     @Test
     public void testMongo() {
-        User u = new User("fsw45","fsw123");
+        UserTest u = new UserTest("fsw45","fsw123");
         userDao.save(u);
     }
 

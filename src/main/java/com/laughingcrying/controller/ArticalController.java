@@ -6,10 +6,7 @@ import com.laughingcrying.service.ArticalServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
@@ -22,12 +19,22 @@ public class ArticalController {
     private ArticalServ articalServ;
 
     @RequestMapping(value = "/blog/Articals",method = RequestMethod.GET)
+//    @GetMapping(value = "/blog/Articals")
     @ResponseBody
     public String showArticals(HttpServletRequest request, Model model){
         System.out.println("!!!!!!!!!!!!!!!!");
         logger.info("come in blog/articals");
         BaseInfo bs = articalServ.getAllArtical();
-        return JSON.toJSONString(bs);
+        return JSON.toJSONString(bs.getObject());
+    }
+
+    @RequestMapping(value = "/blog/addlike/{title}",method = RequestMethod.GET)
+    @ResponseBody
+    public String addlike(HttpServletRequest request, Model model,@PathVariable String title){
+        System.out.println("!!!!!!!!!!!!!!!!");
+        logger.info("come in /blog/addlike/"+title);
+        BaseInfo bs = articalServ.getAllArtical();
+        return JSON.toJSONString(bs.getObject());
     }
 
 //    @RequestMapping("/blog/Articals")
