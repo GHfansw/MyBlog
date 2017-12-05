@@ -2,6 +2,7 @@ $().ready(function(){
     function getAritcals() {
         $.ajax({
             url: "/blog/Articals",
+            method: "GET",
             success: function (data) {
                 // alert(data.toString());
                 var json = JSON.parse(data);

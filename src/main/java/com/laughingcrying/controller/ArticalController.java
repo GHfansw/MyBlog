@@ -19,7 +19,7 @@ public class ArticalController {
     private ArticalServ articalServ;
 
     @RequestMapping(value = "/blog/Articals",method = RequestMethod.GET)
-//    @GetMapping(value = "/blog/Articals")
+//    @GetMapping(value = "/blog/Articals") //为什么会不支持这个？
     @ResponseBody
     public String showArticals(HttpServletRequest request, Model model){
         System.out.println("!!!!!!!!!!!!!!!!");

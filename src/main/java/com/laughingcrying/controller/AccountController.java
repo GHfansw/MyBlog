@@ -31,18 +31,20 @@ public class AccountController {
         return JSON.toJSONString(bs);
     }
 
-    @RequestMapping(value = "/account/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/account/login",method = RequestMethod.GET)
     @ResponseBody
     public String accountLogin(Account account,HttpServletRequest request){
         System.out.println("!!!!!!!!!!!!!!!!");
-        logger.info("come in account/new");
+        logger.info("come in account/login");
         BaseInfo bs = accountServ.findAccountByAccountId(account.getAccountId());
         if (bs.getError().equals("0")){
             Account db_account = (Account) bs.getObject();
             if (db_account.getPassword().equals(account.getPassword())){
+                System.out.println(account.getAccountId());
                 request.getSession().setAttribute("account_info",db_account);
+                return JSON.toJSONString(bs.getObject());
             }
         }
-        return JSON.toJSONString(bs);
+        return JSON.toJSONString(new Integer(1));
     }
 }

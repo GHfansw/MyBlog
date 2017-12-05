@@ -14,6 +14,10 @@ public class Account {
         this.isAdmin = isAdmin;
     }
 
+    public Account(String accountId, String password) {
+        this.accountId = accountId;
+        this.password = password;
+    }
     public Account() {
     }
 
