@@ -13,11 +13,12 @@ public class Artical {
     private List<Comment> comments;
     private Date publishDate;
     private int views;
+    private String content;
 
     public Artical() {
     }
 
-    public Artical(String title, String description, String by, List<String> tags, int likes, List<Comment> comments, Date publishDate, int views) {
+    public Artical(String title, String description, String by, List<String> tags, int likes, List<Comment> comments, Date publishDate, int views, String content) {
         this.title = title;
         this.description = description;
         this.by = by;
@@ -26,6 +27,7 @@ public class Artical {
         this.comments = comments;
         this.publishDate = publishDate;
         this.views = views;
+        this.content = content;
     }
 
 
@@ -103,5 +105,13 @@ public class Artical {
 
     public void setViews(int views) {
         this.views = views;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

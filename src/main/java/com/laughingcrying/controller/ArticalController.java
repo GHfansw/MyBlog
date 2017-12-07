@@ -1,6 +1,7 @@
 package com.laughingcrying.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.laughingcrying.model.Artical;
 import com.laughingcrying.model.BaseInfo;
 import com.laughingcrying.service.ArticalServ;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,18 @@ public class ArticalController {
         logger.info("come in /blog/addlike/"+title);
         BaseInfo bs = articalServ.getAllArtical();
         return JSON.toJSONString(bs.getObject());
+    }
+
+    @RequestMapping(value = "/blog/newArtical",method = RequestMethod.POST)
+    @ResponseBody
+    public String addArtical(Artical artical){
+        System.out.println("!!!!!!!!!!!!!!!!");
+        logger.info("come in /blog/newArtical"+artical.getTitle());
+        BaseInfo bs = articalServ.setArtical(artical);
+        if(bs.getError().equals("0"))
+            return JSON.toJSONString("0");
+        else
+            return JSON.toJSONString("1");
     }
 
 //    @RequestMapping("/blog/Articals")

@@ -24,8 +24,9 @@ public class ArticalDaoImpl implements ArticalDao {
 
     //需要解决title相同时的情况
     @Override
-    public void addArtical(Artical artical) {
+    public boolean addArtical(Artical artical) {
         this.mongoTemplate.insert(artical,"artical");
+        return true;
     }
 
     @Override

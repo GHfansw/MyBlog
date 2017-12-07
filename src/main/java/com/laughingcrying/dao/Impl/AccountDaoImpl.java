@@ -11,18 +11,18 @@ public class AccountDaoImpl implements AccountDao{
 
 
     @Override
-    public boolean addAccount(Account a) {
-        return false;
+    public int addAccount(Account a) {
+        return 0;
     }
 
     @Override
-    public boolean updateAccount(Account a) {
-        return false;
+    public int updateAccount(Account a) {
+        return 0;
     }
 
     @Override
-    public boolean deleteAccount(int accountId) {
-        return false;
+    public int deleteAccount(int accountId) {
+        return 0;
     }
 
     @Override

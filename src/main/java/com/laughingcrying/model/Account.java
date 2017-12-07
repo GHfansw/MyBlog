@@ -5,9 +5,9 @@ public class Account {
     private String accountId;
     private String username;
     private String password;
-    private boolean isAdmin;
+    private int isAdmin;
 
-    public Account(String accountId, String username, String password, boolean isAdmin) {
+    public Account(String accountId, String username, String password, int isAdmin) {
         this.accountId = accountId;
         this.username = username;
         this.password = password;
@@ -53,11 +53,11 @@ public class Account {
         this.password = password;
     }
 
-    public boolean isAdmin() {
+    public int getIsAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

@@ -5,9 +5,9 @@ import com.laughingcrying.model.Account;
 import java.util.List;
 
 public interface AccountDao {
-    boolean addAccount(Account a);
-    boolean updateAccount(Account a);
-    boolean deleteAccount(int accountId);
+    int addAccount(Account a);
+    int updateAccount(Account a);
+    int deleteAccount(int accountId);
     List getAccounts();
     Account getAccountByAccountId(String accountId);
 }
