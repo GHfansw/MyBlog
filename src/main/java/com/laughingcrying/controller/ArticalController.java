@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sun.jvm.hotspot.jdi.IntegerTypeImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
@@ -45,9 +46,9 @@ public class ArticalController {
         logger.info("come in /blog/newArtical"+artical.getTitle());
         BaseInfo bs = articalServ.setArtical(artical);
         if(bs.getError().equals("0"))
-            return JSON.toJSONString("0");
+            return JSON.toJSONString(bs);
         else
-            return JSON.toJSONString("1");
+            return JSON.toJSONString(bs);
     }
 
 //    @RequestMapping("/blog/Articals")

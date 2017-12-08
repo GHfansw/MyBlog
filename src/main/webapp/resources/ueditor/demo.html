@@ -3,32 +3,41 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>添加文章</title>
 </head>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     var ue = UE.getEditor('content');
 </script>
+
+<script type="text/javascript" src="../static/js/artical.js"></script>
 <body>
-<form action="/article/insertArticle" method="post" enctype="multipart/form-data">
+<form id="articalform" method="post">
     <table>
         <tr>
-            <td>文章标题</td><td><input type="text" name="title"></td>
+            <td>文章标题</td><td><input type="text" id="title" name="title"></td>
         </tr>
         <tr>
-            <td>文章简介</td><td><input type="text" name="description"></td>
+            <td>文章简介</td><td><input type="text" id="description" name="description"></td>
         </tr>
         <tr>
-            <td>文章作者</td><td><input type="text" name="by"></td>
+            <td>文章作者</td><td><input type="text" id="by" name="by"></td>
         </tr>
         <tr>
             <td>文章内容</td><td><textarea name="content" id="content" style="width: 800px; height: 400px; margin: 0 auto;"></textarea></td>
         </tr>
         <tr>
-            <td>添加附件</td><td><input type="file" name="file"></td>
+            <td>文章标签</td><td><input type="text" id="tags" name="tags"></td>
         </tr>
         <tr>
-            <td><input type="submit" value="提交"></td>
+            <td>评价</td><td><input type="text" id="comments" name="comments"></td>
+        </tr>
+        <!--<tr>-->
+            <!--<td>添加附件</td><td><input type="file" name="file"></td>-->
+        <!--</tr>-->
+        <tr>
+            <td><button onclick="AddConvention()">提交</button></td>
         </tr>
     </table>
 </form>

@@ -36,20 +36,22 @@ function checklogin() {
         type: "GET",
         url: "/account/login",
         // dataType : 'json',
+        contentType: "application/json",
+        dataType:"json",
         data : $('#loginform').serialize(),
         success: function (data) {
-            if (data == 1) {
+            if (data.error == "0") {
+                location.href = "blog.html";
+                return true;
+            }
+            else {
                 alert("登入失败，用户名或密码错误！");
                 $("#password").val("");
                 //$("#verifycode").val("");
                 //getverifycode();
                 $("#password").focus();
                 return false;
-            }
-            else {
-                alert(data);
-                location.href = "blog.html";
-                return true;
+
             }
         }
     })

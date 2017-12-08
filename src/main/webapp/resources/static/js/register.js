@@ -20,19 +20,21 @@ function checkregister() {
     $.ajax({
         type: "POST",
         url: "/account/register",
+        contentType: "application/json",
+        dataType:"json",
         // dataType : 'json',
         data : $('#registerform').serialize(),
         success: function (data) {
-            if (data == 1) {
+            if (data.error == "0") {
+                alert("注册成功，已自动登录");
+                location.href = "blog.html";
+                return true;
+            }
+            else {
                 alert("换个用户名试试?");
                 $("#password2").val("");
                 $("#password2").focus();
                 return false;
-            }
-            else {
-                alert("注册成功，已自动登录");
-                location.href = "blog.html";
-                return true;
             }
         }
     })

@@ -41,10 +41,10 @@ public class AccountController {
             if (db_account.getPassword().equals(account.getPassword())){
                 System.out.println(account.getAccountId());
                 request.getSession().setAttribute("account_info",db_account);
-                return JSON.toJSONString(bs.getObject());
+                return JSON.toJSONString(bs);
             }
         }
-        return JSON.toJSONString(new Integer(1));
+        return JSON.toJSONString(bs);
     }
 
     @RequestMapping(value = "/account/register",method = RequestMethod.POST)
@@ -55,8 +55,8 @@ public class AccountController {
         if(bs.getError().equals("0")){
             logger.info("!!!!this is get error");
             request.getSession().setAttribute("account_info",account);
-            return JSON.toJSONString(account);
+            return JSON.toJSONString(bs);
         }
-        return JSON.toJSONString(new Integer(1));
+        return JSON.toJSONString(bs);
     }
 }

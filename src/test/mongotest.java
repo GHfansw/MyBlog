@@ -43,7 +43,7 @@ public class mongotest {
 //        hashMap.put("like","5");
         comments.add(new Comment("test","i LIKE the test",new Date().toString(),5));
         comments.add(new Comment("test","i hate the test",new Date().toString(),6));
-        Artical artical = new Artical("test title","test desc","test by me",tags,4,comments,new Date(),1);
+        Artical artical = new Artical("test title","test desc","test by me",tags,4,comments,1,"this is content");
         articalDao.addArtical(artical);
         List l = articalDao.findAll();
         System.out.println(l.getClass().toString());
