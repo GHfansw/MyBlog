@@ -35,7 +35,7 @@ public class ArticalController {
     public String addlike(HttpServletRequest request, Model model,@PathVariable String title){
         System.out.println("!!!!!!!!!!!!!!!!");
         logger.info("come in /blog/addlike/"+title);
-        BaseInfo bs = articalServ.getAllArtical();
+        BaseInfo bs = articalServ.setLikeByTitle(title);
         return JSON.toJSONString(bs.getObject());
     }
 

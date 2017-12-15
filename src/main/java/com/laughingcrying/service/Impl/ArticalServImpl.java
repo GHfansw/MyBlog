@@ -25,4 +25,9 @@ public class ArticalServImpl implements ArticalServ{
         else
             return new BaseInfo("1","添加文章失败",null);
     }
+
+    @Override
+    public BaseInfo setLikeByTitle(String title) {
+        return new BaseInfo("0","增加喜欢",articalDao.addLikeBytitle(title));
+    }
 }

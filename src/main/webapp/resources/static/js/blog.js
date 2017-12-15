@@ -21,7 +21,7 @@ $().ready(function(){
                         '                </ul>\n' +
                         '                </div>\n' +
                         '                <div class="b_left pull-right">\n' +
-                        '                    <a href=""><i class="fa fa-heart"></i><span> '+item.likes+'</span></a>\n' +
+                        '                    <a href="" onclick="like(this);return false;"><i class="fa fa-heart"></i><span> '+item.likes+'</span></a>\n' +
                         '                </div>\n' +
                         '                <div class="clearfix"></div>\n' +
                         '                    <p class="para">'+item.description+'</p>\n' +
@@ -36,3 +36,21 @@ $().ready(function(){
     }
     getAritcals();
 });
+
+function like(obj){
+    // alert($(obj));
+    var liketag = obj.childNodes[1];
+    // alert(liketag);
+    liketag.innerHTML = (parseInt(liketag.innerHTML) + 1).toString();
+    var titletag = obj.parentNode.parentNode.getElementsByTagName('h4')[0].getElementsByTagName('a')[0];
+    var title = titletag.innerHTML;
+    // alert(title);
+    $.ajax({
+        url: "/blog/addlike/"+title,
+        method: "GET",
+        success: function (data) {
+
+        }
+    })
+
+}
